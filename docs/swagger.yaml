@@ -1,0 +1,68 @@
+info:
+  contact: {}
+paths:
+  /api/v1/goodbye:
+    get:
+      consumes:
+      - application/json
+      description: This is the welcome router for users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Welcome router
+      tags:
+      - Welcome
+  /api/v1/hello:
+    get:
+      consumes:
+      - application/json
+      description: This is the welcome router for users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Welcome router
+      tags:
+      - Welcome
+  /api/v1/user/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Get user by id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User id
+          schema:
+            type: string
+      summary: Get user by id
+      tags:
+      - Users
+  /api/v1/users:
+    get:
+      consumes:
+      - application/json
+      description: Get all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get all users
+      tags:
+      - Users
+swagger: "2.0"
