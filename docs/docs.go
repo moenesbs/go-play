@@ -111,6 +111,51 @@ const docTemplate = `{
                         "description": "OK"
                     }
                 }
+            },
+            "post": {
+                "description": "Create user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create user",
+                "parameters": [
+                    {
+                        "description": "User data",
+                        "name": "userData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user_management.UserData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "user_management.UserData": {
+            "type": "object",
+            "properties": {
+                "family_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
             }
         }
     }

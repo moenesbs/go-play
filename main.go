@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "example/hello/docs"
+	userRouter "example/hello/user_management"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
@@ -18,7 +19,7 @@ func main() {
 	api := router.Group("/api/v1")
 	router.GET("/", healthCheck)
 	HelloRouter(api)
-	UsersRouter(api)
+	userRouter.CreateUsersRouter(api)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	err := router.Run(":8080")
 	if err != nil {
