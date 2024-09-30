@@ -1,6 +1,7 @@
 package user_management
 
 import (
+	"example/hello/database"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"strconv"
@@ -31,8 +32,14 @@ var users = map[string]UserData{
 // @SUCCESS 200
 // @Router /api/v1/users [get]
 func getUsers(context *gin.Context) {
-	fmt.Printf("Users: %v\n", users)
-	context.IndentedJSON(200, users)
+	db := database.CreateConnection()
+	var usersdb []database.UserStruct
+	db.Select("Name", "FamilyName").Find(&usersdb)
+	fmt.Println(usersdb)
+	context.JSON(200, gin.H{
+		"users": usersdb,
+	})
+
 }
 
 // @BasePath /api/v1
