@@ -7,7 +7,7 @@ import (
 )
 
 func CreateConnection() *gorm.DB {
-	dsn := "host=localhost user=example password=example dbname=example port=5432"
+	dsn := "host=localhost user=admin password=admin dbname=admin port=5432"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
@@ -17,21 +17,19 @@ func CreateConnection() *gorm.DB {
 	return db
 }
 
-func PopulateDatabase() {
-	fmt.Println("Populating database")
+func InsertUser(user UserStruct) int {
 	db := CreateConnection()
-	err := db.AutoMigrate(&UserStruct{})
-	if err != nil {
-		panic(err)
-		return
+	id := db.Create(&user)
+	if id.Error != nil {
+		panic(id.Error)
 	}
-	db.Create(&UserStruct{
-		Name:       "John",
-		FamilyName: "Doe",
-	})
-	db.Create(&UserStruct{
-		Name:       "Doe",
-		FamilyName: "John",
-	})
+	fmt.Println("User inserted successfully to DB, id: ", user.ID)
+	return int(user.ID)
+}
 
+func GetUsers() []UserStruct {
+	db := CreateConnection()
+	var usersdb []UserStruct
+	db.Select("Name").Find(&usersdb)
+	return usersdb
 }
