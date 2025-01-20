@@ -1,5 +1,5 @@
 definitions:
-  user_management.UserData:
+  userRouter.UserData:
     properties:
       family_name:
         type: string
@@ -39,27 +39,6 @@ paths:
       summary: Welcome router
       tags:
       - Welcome
-  /api/v1/user/{id}:
-    post:
-      consumes:
-      - application/json
-      description: Get user by id
-      parameters:
-      - description: User ID
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: User id
-          schema:
-            type: string
-      summary: Get user by id
-      tags:
-      - Users
   /api/v1/users:
     get:
       consumes:
@@ -83,7 +62,7 @@ paths:
         name: userData
         required: true
         schema:
-          $ref: '#/definitions/user_management.UserData'
+          $ref: '#/definitions/userRouter.UserData'
       produces:
       - application/json
       responses:

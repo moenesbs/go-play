@@ -18,7 +18,7 @@ func main() {
 	router := gin.Default()
 	api := router.Group("/api/v1")
 	router.GET("/", healthCheck)
-	HelloRouter(api)
+	userRouter.HelloRouter(api)
 	userRouter.CreateUsersRouter(api)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	err := router.Run(":8080")

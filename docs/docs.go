@@ -61,38 +61,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/user/{id}": {
-            "post": {
-                "description": "Get user by id",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Get user by id",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "User ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User id",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/users": {
             "get": {
                 "description": "Get all users",
@@ -131,7 +99,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/user_management.UserData"
+                            "$ref": "#/definitions/userRouter.UserData"
                         }
                     }
                 ],
@@ -147,7 +115,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "user_management.UserData": {
+        "userRouter.UserData": {
             "type": "object",
             "properties": {
                 "family_name": {
